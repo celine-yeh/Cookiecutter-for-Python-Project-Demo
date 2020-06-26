@@ -13,12 +13,14 @@ pytest_opts = \
 	--cov-report=html \
 	-m '$(TEST_MARK)'
 
+APP_PORT ?= 4500
 TEST_MARK ?= not large
 VERSION ?= $(shell cat VERSION)
 image = $(docker_username)/$(package_name)
 image_base = $(docker_username)/$(image)_base
 image_dev = $(docker_username)/$(image)_dev
 
+export APP_PORT
 export APP_IMAGE = $(image)
 export APP_IMAGE_DEV = $(image_dev)
 define docker_run_dev

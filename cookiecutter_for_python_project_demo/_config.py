@@ -6,9 +6,12 @@ from .util import lazy_service
 
 class Config:
 
-    def __init__(self, settings, env):
+    def __init__(self, settings):
         self._settings = settings
-        self._env = env
+
+    @property
+    def debug(self):
+        return self._settings.get('debug')
 
     @property
     def sqlalchemy_database_url(self):
@@ -19,8 +22,7 @@ class Config:
 
 @lazy_service
 def config():
-    env = os.environ
-    with open(env['SETTINGS_PATH']) as ymlfile:
+    with open(os.environ['SETTINGS_PATH']) as ymlfile:
         settings = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
-    return Config(settings, env)
+    return Config(settings)
