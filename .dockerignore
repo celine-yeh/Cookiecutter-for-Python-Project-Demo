@@ -1,0 +1,5 @@
+*
+!Pipfile
+!Pipfile.lock
+!/cookiecutter-for-python-project-demo-cli
+!/cookiecutter_for_python_project_demo/
