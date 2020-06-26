@@ -1,0 +1,3 @@
+if __name__ == '__main__':
+    from cookiecutter_for_python_project_demo.cli import main
+    main()

@@ -1,0 +1,32 @@
+version: '3'
+services:
+  app:
+    image: ${APP_IMAGE}
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./settings.yml:/workspace/settings.yml
+    environment:
+      SETTINGS_PATH: /workspace/settings.yml
+
+  dev:
+    image: ${APP_IMAGE_DEV}
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workspace
+    environment:
+      SETTINGS_PATH: /workspace/settings.yml
+    command: bash
+
+  db:
+    image: mysql:5.7.26
+    ports:
+      - 3307:3306
+    volumes:
+      - ./initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: app
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: app_db

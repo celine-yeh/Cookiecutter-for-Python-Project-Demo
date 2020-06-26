@@ -1,1 +1,1 @@
-# Cookiecutter-for-Python-Project-Demo
+# Cookiecutter for Python Project Demo
